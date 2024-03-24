@@ -6,9 +6,7 @@ import time
 import warnings
 warnings.filterwarnings("ignore")
 
-
 class Wowza:
-
 
     def __init__(self):
 
@@ -16,12 +14,17 @@ class Wowza:
         self.screen     = Screen()
         self.kb         = Keyboard()
 
-
     def start(self):
 
-        print('[*] Wowza is running...')
+        banner = '[*] Wowza is running...'
+        print(banner)
+
+        # t = time.time()
 
         while True:
+
+            # print(f'\r[*] {(time.time() - t) * 1000}', end='')
+            # t = time.time()
 
             try:
 
@@ -30,12 +33,13 @@ class Wowza:
                 if self.toggler.enabled:
 
                     r, g, b = self.screen.image
+                    print(r,g,b)
 
                     if 0 <= r <= 7 and g == 0 and b != 0:
                         self.kb.send_keys( r, b )
 
                 time.sleep(.05)
-            
+
             except KeyboardInterrupt:
                 break
 

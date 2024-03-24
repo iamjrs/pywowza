@@ -18,7 +18,10 @@ class Screen:
             self.update()
 
     def update(self):
-        self.image  = getRectAsImage( self.rect ).getpixel( (0,0) )
+        try:
+            self.image  = getRectAsImage( self.rect ).getpixel( (0,0) )
+        except:
+            pass
 
 
 if __name__ == '__main__':
