@@ -33,7 +33,7 @@ class Wowza:
                 if self.toggler.enabled:
 
                     r, g, b = self.screen.image
-                    print(r,g,b)
+                    # print(r,g,b)
 
                     if 0 <= r <= 7 and g == 0 and b != 0:
                         self.kb.send_keys( r, b )
