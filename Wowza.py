@@ -4,19 +4,21 @@ from Screen import *
 import time
 
 import warnings
-warnings.filterwarnings("ignore")
+
+# warnings.filterwarnings("ignore")
+
 
 class Wowza:
 
     def __init__(self):
 
-        self.toggler    = Toggler()
-        self.screen     = Screen()
-        self.kb         = Keyboard()
+        self.toggler = Toggler()
+        self.screen = Screen()
+        self.kb = Keyboard()
 
     def start(self):
 
-        banner = '[*] Wowza is running...'
+        banner = "[*] Wowza is running..."
         print(banner)
 
         # t = time.time()
@@ -36,18 +38,18 @@ class Wowza:
                     # print(r,g,b)
 
                     if 0 <= r <= 7 and g == 0 and b != 0:
-                        self.kb.send_keys( r, b )
+                        self.kb.send_keys(r, b)
 
-                time.sleep(.05)
+                time.sleep(0.1)
 
             except KeyboardInterrupt:
                 break
 
-        print('[*] Wowza has stopped.')
+        print("[*] Wowza has stopped.")
         exit()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     w = Wowza()
     w.start()
