@@ -1,8 +1,5 @@
-from ahk.directives import *
-from ahk import AHK
+from pynput import mouse
 from winsound import Beep
-import time
-import os
 from threading import Thread
 
 
@@ -10,30 +7,30 @@ class Toggler:
 
     def __init__(self):
         self.enabled = False
-        self.start()
+        self.listener = mouse.Listener(on_click=self.on_click)
+        self.listener.start()
 
-    def toggle(self, toggle):
-        freq = {True: 500, False: 250}
-        setattr(self, toggle, not getattr(self, toggle))
-        Beep(freq[getattr(self, toggle)], 200)
+    def on_click(self, x, y, button, pressed):
 
-    def start(self):
-        ts = [self._start_xb1]
-        for t in ts:
-            Thread(target=t, args=()).start()
+        if button == mouse.Button.x1:
+            if pressed:
 
-    def _start_xb1(self):
-        ahk = AHK(directives={NoTrayIcon})
-        while True:
-            try:
-                ahk.key_wait("XButton1")
-                self.toggle("enabled")
-            except Exception() as e:
-                print(repr(e))
-            finally:
-                time.sleep(0.1)
+                freq = 500
+                if self.enabled:
+                    freq = 250
+
+                Thread(target=self.beep, args=(freq,)).start()
+
+                self.enabled = not self.enabled
+
+        return True
+
+    def beep(self, frequency: int | None = None):
+        Beep(frequency=frequency, duration=250)
+        return True
 
 
 if __name__ == "__main__":
 
     t = Toggler()
+    t.listener.join()

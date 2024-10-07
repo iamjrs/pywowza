@@ -25,7 +25,7 @@ class Wowza:
 
         while True:
 
-            # print(f'\r[*] {(time.time() - t) * 1000}', end='')
+            # print(f"\r[*] {(time.time() - t) * 1000}", end="")
             # t = time.time()
 
             try:
@@ -40,7 +40,7 @@ class Wowza:
                     if 0 <= r <= 7 and g == 0 and b != 0:
                         self.kb.send_keys(r, b)
 
-                time.sleep(0.1)
+                # time.sleep(0.01)
 
             except KeyboardInterrupt:
                 break

@@ -1,17 +1,17 @@
 from pynput.keyboard import Key, Controller
 
 MOD_CONTROL = 1
-MOD_SHIFT   = 2
-MOD_ALT     = 4
+MOD_SHIFT = 2
+MOD_ALT = 4
+
 
 class Keyboard:
 
     def __init__(self):
-        
+
         self.kb = Controller()
 
-
-    def send_keys( self, mod, key ):
+    def send_keys(self, mod, key):
 
         keys = []
 
@@ -33,18 +33,17 @@ class Keyboard:
             if type(k) == Key:
                 self.kb.press(k)
             elif type(k) == int:
-                self.kb.press( chr(k) )
+                self.kb.press(chr(k))
 
         for k in keys:
             if type(k) == Key:
                 self.kb.release(k)
             elif type(k) == int:
-                self.kb.release( chr(k) )
+                self.kb.release(chr(k))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     kb = Keyboard()
     kb.kb.press(chr(9))
     kb.kb.release(chr(9))
-    
