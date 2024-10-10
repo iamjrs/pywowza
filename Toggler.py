@@ -25,7 +25,7 @@ class Toggler:
 
         return True
 
-    def beep(self, frequency: int | None = None):
+    def beep(self, frequency: int = None):
         Beep(frequency=frequency, duration=250)
         return True
 
