@@ -10,6 +10,7 @@ class Keyboard:
     def __init__(self):
 
         self.kb = Controller()
+        self.previous_keys = (None, None)
 
     def send_keys(self, mod, key):
 

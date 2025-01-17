@@ -19,7 +19,12 @@ class Toggler:
                 if self.enabled:
                     freq = 250
 
-                Thread(target=self.beep, args=(freq,)).start()
+                thread = Thread(
+                    target=self.beep,
+                    args=(freq,),
+                    daemon=True,
+                )
+                thread.start()
 
                 self.enabled = not self.enabled
 
